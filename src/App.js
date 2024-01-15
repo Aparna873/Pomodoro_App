@@ -3,8 +3,8 @@ import React , {useRef, useState} from "react"
 import { padTime } from './components/helper';
 function App() 
 {
- const [timeLeft,setTimeLeft]=useState(25*60);
- const [isRunning,setisRunning]=useState(false);
+ const [timeLeft,setTimeLeft] = useState(25*60);
+ const [isRunning,setisRunning] = useState(false);
  const [title,setTitle]=useState('LET  THE  COUNTDOWN  BEGIN !!')
  const intervalRef=useRef(null);
 
@@ -31,13 +31,15 @@ function App()
 
  function resetTimer(){
   setTitle("READY  FOR  ANOTHER  ROUND ?");
-  clearInterval(intervalRef.current);
+  setisRunning(false);
+  clearInterval(intervalRef.current); 
   setTimeLeft(25*60);
   intervalRef.current=null;
  }
 
  const minutes = padTime(Math.floor(timeLeft/60));
- const seconds = padTime(timeLeft-minutes * 60)
+ const seconds = padTime(timeLeft-minutes * 60);
+
   return (
     <div className="App">
       <h2>{title}</h2>
@@ -51,7 +53,7 @@ function App()
       <div className="btn">
         {!isRunning && <button onClick={startTimer}>Start</button>}
         {isRunning && <button onClick={stopTimer}>Stop</button>}
-        <button onClick={resetTimer}>Reset</button>
+        {!isRunning && <button onClick={resetTimer}>Reset</button>}
       </div>
     </div>
   );

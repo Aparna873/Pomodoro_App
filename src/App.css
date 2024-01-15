@@ -46,3 +46,7 @@ margin-top: 100px
     margin-right: 10px;
     color: #F1E4C3;
 }
+.btn button:hover
+{
+    cursor: pointer;
+}
